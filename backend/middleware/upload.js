@@ -1,30 +1,7 @@
 
 import multer from "multer";
-import fs from "fs";
-import path from "path";
-import os from "os";
-import crypto from "crypto";
 
-const isVercel = Boolean(process.env.VERCEL);
-
-const uploadDir = isVercel
-  ? path.join(os.tmpdir(), "uploads")
-  : path.resolve("uploads");
-
-fs.mkdirSync(uploadDir, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueName =
-      crypto.randomUUID() +
-      path.extname(file.originalname).toLowerCase();
-
-    cb(null, uniqueName);
-  },
-});
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = [
@@ -43,7 +20,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
 });
 
 export default upload;

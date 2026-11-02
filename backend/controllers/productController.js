@@ -1,4 +1,24 @@
 import Product from "../models/ProductModel.js";
+import cloudinary from "../config/cloudinary.js";
+import { Readable } from "stream";
+
+
+const uploadToCloudinary = (file) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: "ecommerce/products",
+        resource_type: "image",
+      },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+
+    Readable.from(file.buffer).pipe(uploadStream);
+  });
+};
 
 export const createProduct = async (req, res) => {
   try {
@@ -31,6 +51,9 @@ export const createProduct = async (req, res) => {
         message: "Enter a valid price and stock quantity",
       });
     }
+    const imageUrl = req.file
+  ? await uploadToCloudinary(req.file)
+  : "";
 
     const product = await Product.create({
       product_name,
@@ -38,7 +61,7 @@ export const createProduct = async (req, res) => {
       category,
       price: Number(price),
       stock_quantity: Number(stock_quantity),
-      product_image: req.file ? `/uploads/${req.file.filename}` : "",
+      product_image:imageUrl,
     });
     res.status(200).json({
       message: "Product added successfully",
@@ -131,7 +154,7 @@ export const updateProduct = async (req, res) => {
     }
 
     if (req.file) {
-      updates.product_image = `/uploads/${req.file.filename}`;
+      updates.product_image = await uploadToCloudinary(req.file);
     }
     const data = await Product.findByIdAndUpdate(id,{$set:updates},{
         new:true
