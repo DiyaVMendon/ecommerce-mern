@@ -18,7 +18,8 @@ import { toast } from "react-toastify";
 import { axiosRequest } from "../api/axiosRequest";
 import Styles from "./home.module.css";
 
-const SERVER_URL = "http://localhost:5001";
+const SERVER_URL =
+  import.meta.env.VITE_SERVER_URL || "http://localhost:5001";
 const FEATURED_COUNT = 8;
 
 const categories = [

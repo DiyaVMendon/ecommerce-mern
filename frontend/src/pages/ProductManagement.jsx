@@ -18,7 +18,8 @@ import {
 import { axiosRequest } from "../api/axiosRequest";
 import Styles from "./productManagement.module.css";
 
-const SERVER_URL = "http://localhost:5001";
+const SERVER_URL =
+  import.meta.env.VITE_SERVER_URL || "http://localhost:5001";
 const pageSize = 10;
 
 const categoryOptions = [

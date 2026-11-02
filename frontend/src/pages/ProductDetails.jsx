@@ -16,7 +16,8 @@ import { toast } from "react-toastify";
 import { axiosRequest } from "../api/axiosRequest";
 import Styles from "./productDetails.module.css";
 
-const SERVER_URL = "http://localhost:5001";
+const SERVER_URL =
+  import.meta.env.VITE_SERVER_URL || "http://localhost:5001";
 const RELATED_COUNT = 4;
 
 const getImageUrl = (image) => {
