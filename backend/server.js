@@ -21,6 +21,11 @@ app.get("/",(req,res)=>{
 
 })
 
+app.get("/api/test", (req, res) => {
+  res.status(200).json({
+    message: "API routing works",
+  });
+});
 app.use(async (req, res, next) => {
   try {
     await connectdb();
