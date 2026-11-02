@@ -21,12 +21,20 @@ app.get("/",(req,res)=>{
 
 })
 
-connectdb()
+app.use(async (req, res, next) => {
+  try {
+    await connectdb();
+    next();
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    res.status(500).json({
+      message: "Database connection failed",
+    });
+  }
+});
 
 app.use("/api/auth",AuthRoutes)
 app.use("/api/admin",productRoutes)
 app.use("/api/user",CartRoutes)
 
-app.listen(process.env.PORT,()=>{
-    console.log(`Listening to PORT ${process.env.PORT}`)
-})
+export default app;

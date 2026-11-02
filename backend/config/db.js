@@ -1,13 +1,20 @@
 import mongoose from "mongoose";
 
-export const connectdb=()=>{
-    try {
-        const client = mongoose.connect(process.env.MONGO_URI)
-        console.log("Connection established");
-        return client
-    } catch (error) {
-        console.log(error)
-        process.exit(1)
-        
-    }
-}
+let connectionPromise = null;
+
+export const connectdb = async () => {
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection;
+  }
+
+  if (!connectionPromise) {
+    connectionPromise = mongoose.connect(process.env.MONGO_URI)
+      .catch((error) => {
+        connectionPromise = null;
+        throw error;
+      });
+  }
+
+  await connectionPromise;
+  return mongoose.connection;
+};

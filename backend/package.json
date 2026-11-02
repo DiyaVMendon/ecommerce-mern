@@ -6,9 +6,11 @@
   "author": "",
   "type": "module",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+ 
+"scripts": {
+  "start": "node server.js",
+  "dev": "node --watch server.js"
+},
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
