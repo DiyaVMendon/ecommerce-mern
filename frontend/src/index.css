@@ -1,0 +1,228 @@
+
+/* ==============================
+   GLOBAL VARIABLES
+============================== */
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #ffffff;
+  --border: #c5c7cc;
+
+  --primary: #173d2d;
+  --primary-hover: #244632;
+  --accent: #d9bc86;
+
+  --code-bg: #f4f3ec;
+  --social-bg: rgba(244, 243, 236, 0.5);
+
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+
+  color-scheme: light;
+  color: var(--text);
+  background-color: var(--bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==============================
+   GLOBAL RESET
+============================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ==============================
+   REACT ROOT
+============================== */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==============================
+   TYPOGRAPHY
+============================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ==============================
+   GLOBAL INPUT FIELD
+============================== */
+
+.react_input_field {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: var(--text-h);
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.react_input_field::placeholder {
+  color: #9ca3af;
+}
+
+.react_input_field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(23, 61, 45, 0.1);
+}
+
+.react_input_field:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   GLOBAL BUTTON
+============================== */
+
+.react_primary_btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: var(--primary);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.react_primary_btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.react_primary_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   GLOBAL LINKS
+============================== */
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==============================
+   GLOBAL IMAGES
+============================== */
+
+img {
+  max-width: 100%;
+}
+
+/* ==============================
+   RESPONSIVE TYPOGRAPHY
+============================== */
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .react_input_field {
+    min-height: 44px;
+    padding: 10px 14px;
+  }
+
+  .react_primary_btn {
+    min-height: 44px;
+  }
+}

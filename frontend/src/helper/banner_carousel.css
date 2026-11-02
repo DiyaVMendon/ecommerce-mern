@@ -1,0 +1,23 @@
+.banner-swiper {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-bullet-active {
+  background: #244632;
+}
+
+@media (max-width: 768px) {
+  .banner-swiper {
+    height: 250px;
+  }
+}
